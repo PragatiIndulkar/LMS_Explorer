@@ -26,6 +26,15 @@ const getStyles = () =>
       marginVertical: 5,
     },
     title: {fontWeight: 'bold', fontSize: 20},
+    searchComponent: {
+      height: 40,
+      borderColor: 'black',
+      backgroundColor: '#dfe0f2',
+      borderWidth: 1,
+      borderRadius: 8,
+      paddingHorizontal: 10,
+      marginBottom: 10,
+    },
     filterRow: {flexDirection: 'row', flexWrap: 'wrap', marginVertical: 5},
     toggleRow: {
       backgroundColor: '#8f94f2',

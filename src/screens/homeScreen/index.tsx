@@ -7,6 +7,7 @@ import {
   Button,
   Switch,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import getStyles from './styles';
@@ -14,6 +15,7 @@ import {Picker} from '@react-native-picker/picker';
 
 export default function HomeScreen({navigation}) {
   const styles = getStyles();
+  const [searchQuery, setSearchQuery] = useState('');
   const [courses, setCourses] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -66,16 +68,21 @@ export default function HomeScreen({navigation}) {
       </View>
     );
   }
+
   useEffect(() => {
     let data = [...courses];
     if (selectedInstructor)
       data = data.filter(c => c.userId === selectedInstructor);
     if (longTitlesOnly) data = data.filter(c => c.wordCount >= 5);
+    if (searchQuery)
+      data = data.filter(c =>
+        c.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
     data.sort((a, b) =>
       sortAsc ? a.wordCount - b.wordCount : b.wordCount - a.wordCount,
     );
     setFiltered(data);
-  }, [courses, selectedInstructor, longTitlesOnly, sortAsc]);
+  }, [courses, selectedInstructor, longTitlesOnly, sortAsc, searchQuery]);
 
   if (loading) {
     return <ActivityIndicator size="large" style={{flex: 1}} />;
@@ -98,6 +105,12 @@ export default function HomeScreen({navigation}) {
           ))}
         </Picker>
       </View>
+      <TextInput
+        style={styles.searchComponent}
+        placeholder="Search by course title..."
+        value={searchQuery}
+        onChangeText={text => setSearchQuery(text)}
+      />
       <View style={styles.toggleRow}>
         <Text style={{fontWeight: 'bold', fontSize: 20}}>Long Titles</Text>
         <Switch value={longTitlesOnly} onValueChange={setLongTitlesOnly} />

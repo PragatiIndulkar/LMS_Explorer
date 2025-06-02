@@ -11,6 +11,14 @@ const getStyles = () =>
       alignItems: 'center',
     },
     text: {color: 'white', fontSize: 18},
+    commentSection: {
+      marginBottom: 10,
+      padding: 8,
+      borderWidth: 1,
+      backgroundColor: '#dfe0f2',
+      borderColor: 'black',
+      borderRadius: 6,
+    },
   });
 
 export default getStyles;
