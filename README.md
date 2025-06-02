@@ -26,7 +26,7 @@ With Metro running, open a new terminal window/pane from the root of your React 
 
 ```sh
 # Using npm
-npm run android
+npx react-native run-android
 
 # OR using Yarn
 yarn android
@@ -39,7 +39,7 @@ For iOS, remember to install CocoaPods dependencies (this only needs to be run o
 The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
 ```sh
-bundle install
+pod install
 ```
 
 Then, and every time you update your native dependencies, run:
@@ -52,7 +52,7 @@ For more information, please visit [CocoaPods Getting Started guide](https://gui
 
 ```sh
 # Using npm
-npm run ios
+npx react-native run-ios
 
 # OR using Yarn
 yarn ios
